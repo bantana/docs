@@ -79,3 +79,14 @@ KT以日志追加的方式保存了所有的操作历史，任何的密钥更新
 另外，当有用户的数据更新时，KT会定时对整个数据库生成快照和Merkel Tree Root，任何用户都可以随时检查所有的快照和Root。为了保证快照的真实性，每个快照的Merkel Tree Root都会存储在另外的Merkel Tree，并通过Gossip协议进行共享。
 
 ![](https://github.com/google/keytransparency/raw/master/docs/images/SL84rktNJb4.png)
+
+#### 可监控性
+
+任何用户在任何时候都可以向KT服务器请求得到自己的公钥，如果用户发现KT服务器返回的公钥已经被修改了（与自己本地存储的不一致或者不是在自己的授权下修改的），可以向其他用户或KT服务器广播这次恶意行为。
+
+另外，任何用户都可以分别从不同的KT服务器得到公钥和SMH，并校验返回的结果是否一致，若不一致则可以通报恶意的KT服务器。
+
+### 参考资料
+
+* [Key Transparency Design](https://github.com/google/keytransparency/blob/master/docs/design.md)
+* [CONIKS](https://eprint.iacr.org/2014/1004.pdf)
